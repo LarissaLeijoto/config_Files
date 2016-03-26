@@ -1,0 +1,168 @@
+" -----------------------------------------------------------------"
+"                                                                  "
+"                                                                  "
+"    		  Federal University of Minas Gerais - UFMG            "
+"      				 Computer Science Department				   "
+"  																   "
+"						Larissa Fenandes Leijôto  			       "
+"                                                                  "
+"----------------------------------------------------------------- "
+" VIM configuration
+execute pathogen#infect()
+"auto complete
+" Layout
+set number
+set laststatus=2
+set statusline=\ %F%m%r%h\ %w\ \ Line:\ %l/%L:%c
+set mouse+=a
+
+" Colors and highlighting
+set hlsearch
+set incsearch
+set showmatch
+set smartcase
+
+" Solarized Dark
+syntax on
+set t_Co=256
+let g:solarized_termcolors=256
+set background=dark
+colorscheme solarized 
+set syntax=markdown
+au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
+set spell spelllang=en_us
+
+" Line colors and bars
+hi LineNr ctermfg=4
+set colorcolumn=80
+hi ColorColumn ctermbg=4
+set wrap
+set linebreak
+set nolist
+set textwidth=80
+set wrapmargin=80
+
+" copy to clipboard
+set clipboard=unnamedplus
+vmap <C-c> "+yi
+vmap <C-x> "+c
+vmap <C-v> c<ESC>"+p
+imap <C-v> <ESC>"+pa
+imap <C-v> <Esc><C-v>a
+
+" general configurations
+set history=1000         " remember more commands and search history
+set undolevels=1000      " use many muchos levels of undo
+set wildignore=*.swp,*.bak,*.pyc,*.class
+set title                " change the terminal's title
+set visualbell           " don't beep
+set noerrorbells         " don't beep
+set nobackup
+set noswapfile
+
+
+"If you want to keep your existing 'textwidth' settings for most lines
+"in your file, but not have Vim automatically reformat when typing on
+"existing lines, you can do this with:
+"set formatoptions-=t
+
+"If you want Vim to adjust textwidth automatically most of the time but
+"you have a few long lines that you don't want to change, use:
+set formatoptions+=l
+
+" Indentation
+set foldenable
+set smartindent
+set tabstop=4
+set shiftwidth=4
+filetype indent on
+
+" Mappings
+map <Enter><Enter> :noh<Enter>
+map <Enter><up><up> :%s/\s*$//<Enter>
+
+" Read/write
+set nobk
+
+" Headers
+au BufNewFile *.R call RConfig()
+au BufNewFile *.c call CConfig()
+au BufNewFile *.cpp,*.cc call CPPConfig()
+au BufNewFile *.awk call AwkConfig()
+au BufNewFile *.sh call ShellConfig()
+au BufNewFile *.py call PythonConfig()
+au BufNewFile *.hs call HaskellConfig()
+au BufNewFile *.tex,*.tikz call TexConfig()
+
+au BufRead,BufNewFile *.md setlocal textwidth=70
+au BufRead,BufNewFile *.tex,*.tikz set filetype=tex
+au BufRead,BufNewFile *.elf,*.thm,sources.cfg set filetype=twelf
+
+let c_no_curly_error=1
+au BufRead,BufNewFile *.cpp,*.hpp syn keyword Constant nullptr
+
+"---------------------------------------------------------------------
+" Language oriented configurations
+
+" R Script
+function RConfig()
+	0r ~/.vim/templates/R
+	norm G4
+	d d
+	8
+	startinsert!
+endfunction
+
+" C Script
+function CConfig()
+	0r ~/.vim/templates/c
+	norm G4
+	d d
+	8
+	startinsert!
+endfunction
+
+" C++ Script
+function CPPConfig()
+	0r ~/.vim/templates/cpp
+	norm G
+	d d
+	8
+	startinsert!
+endfunction
+
+" Shell Script
+function ShellConfig()
+	0r ~/.vim/templates/shell
+	norm G4
+	startinsert!
+endfunction
+
+" Awk Script
+function AwkConfig()
+	0r ~/.vim/templates/awk
+	norm G4
+	startinsert!
+endfunction
+
+" Python Script
+function PythonConfig()
+	0r ~/.vim/templates/python
+	norm G4
+	startinsert!
+endfunction
+
+" Haskell Script
+function HaskellConfig()
+	0r ~/.vim/templates/haskell
+	norm G
+	d d
+	startinsert!
+endfunction
+
+" Latex Script
+function TexConfig()
+	0r ~/.vim/templates/latex
+	norm G
+	startinsert!
+endfunction
