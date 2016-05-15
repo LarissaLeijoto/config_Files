@@ -1,0 +1,7 @@
+#! /usr/bin/Rscript
+
+# Arguments
+args = commandArgs();
+inpath <- args[6];
+
+

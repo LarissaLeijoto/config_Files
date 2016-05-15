@@ -1,0 +1,27 @@
+
+\documentclass[letterpaper, 11pt]{article}
+\usepackage[portuguese]{babel}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage[utf8]{inputec}
+\geometry{textwidth=6in, textheight=9in, marginparsep=7pt, marginparwidth=.6in, top=30mm, bottom=25mm}
+
+\title{Colocar título aqui}
+\date{\today}
+
+begin{document}
+\maketitle
+ 
+\onehalfspacing
+ 
+ 
+\section{Introdução} \label{intro}
+Escreva sua intro aqui.
+
+\section{Método}\label{metodo}
+Escreva aqui.
+ 
+\section{Conclusão}\label{conclusao}
+ 
+Escreva aqui.
+\end{document}
